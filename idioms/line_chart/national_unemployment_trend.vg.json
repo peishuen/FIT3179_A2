@@ -1,0 +1,81 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 700,
+  "height": 400,
+  
+  "data": {
+    "url": "https://raw.githubusercontent.com/peishuen/FIT3179_A2/main/idioms/line_chart/national_unemployment_year.csv"
+  },
+
+  "title": {
+    "text": "National Unemployment Trend in Malaysia",
+    "fontSize": 16,
+    "fontWeight": "normal",
+    "anchor": "middle",
+    "offset": 15
+  },
+
+  "layer": [
+    {
+      "mark": {
+      "type": "line",
+      "color": "#3a925f",
+      "strokeWidth": 3,
+      "point": {"size": 35, "color": "#3a925f"}
+      },
+
+      "encoding": {
+          "x": {
+            "field": "year",
+            "type": "temporal",
+            "timeUnit": "yearmonth",
+            "title": "Year",
+            "axis": {
+              "labelAngle": 0, 
+              "grid": false, 
+              "format": "%Y"
+            }
+          },
+
+          "y": {
+            "field": "unemployment_rate",
+            "type": "quantitative",
+            "title": "Unemployment Rate  (%)"
+          },
+
+          "tooltip": [
+            {"field": "year", "type": "ordinal", "title": "Year"},
+            {"field": "unemployment_rate", "type": "quantitative", "title": "Unemployment Rate (%)"}
+          ]
+      }
+    },
+    {
+      "mark": {
+          "type": "rule",
+          "color": "gray",
+          "strokeDash": [4, 4],
+          "strokeWidth": 2
+      },
+      
+      "encoding": {
+        "x": {"datum": 2020}
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "dx": 0,
+        "dy": -130,
+        "fontSize": 12,
+        "color": "gray"
+      },
+
+      "encoding": {
+        "x": {"datum": 2020},
+        "y": {"datum": 3.5},
+        "text": {"value": "COVID-19 Pandemic"}
+      }
+    }
+  ]
+}
