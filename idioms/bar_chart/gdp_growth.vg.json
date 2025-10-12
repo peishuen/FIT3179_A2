@@ -1,0 +1,68 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+    "width": 700,
+    "height": 400,
+    "title": {
+        "text": "Malaysia’s Real GDP Growth Rate", 
+        "fontSize": 18, 
+        "fontWeight": "bold"
+    },
+
+    "data": {
+        "url": "https://raw.githubusercontent.com/peishuen/FIT3179_A2/main/idioms/bar_chart/gdp_gni_annual_real.csv",
+        "format": {"type": "csv"}
+    },
+
+    "transform": [
+        {"filter": "datum.series == 'growth_yoy'"},
+        {"filter": "year(datum.date) >= 2017 && year(datum.date) <= 2023"},
+        {"calculate": "year(datum.date)", "as": "year"},
+        {
+            "calculate": "format(datum.gdp, '.2f') + '%'",
+            "as": "gdp_label"
+        }
+    ],
+
+    "mark": {
+        "type":"bar"
+    }, 
+
+    "encoding": {
+        "x": {
+            "field": "year",
+            "type": "ordinal",
+            "title": "Year",
+            "axis": {
+                "labelAngle": 0,
+                "grid": false
+            }
+        },
+
+        "y": {
+            "field": "gdp",
+            "type": "quantitative",
+            "title": "Growth Rate (%)",
+            "axis": {
+                "grid": true
+            }
+        },
+
+        "color": {
+            "condition": {
+                "test": "datum.gdp < 0",
+                "value": "#e8a83a"
+            },
+            "value": "#c986eb"
+        },
+
+        "tooltip": [
+            {"field": "year", "type": "ordinal", "title":"Year"},
+            {"field": "gdp_label", "type": "nominal", "title": "GDP Growth"}
+        ]
+    },
+
+    "config": {
+        "view": {"stroke": null},
+        "axis": {"labelFont": "Arial", "titleFont": "Arial"}
+    }
+}

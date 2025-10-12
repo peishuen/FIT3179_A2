@@ -1,0 +1,118 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 750,
+  "height": 420,
+  "title": {
+    "text": "Malaysia’s Trade (% of GDP, 2017–2023)",
+    "fontSize": 18,
+    "fontWeight": "bold",
+    "anchor": "middle",
+    "offset": 15
+  },
+  "data": {
+    "url": "https://raw.githubusercontent.com/peishuen/FIT3179_A2/main/idioms/multi_line_chart/exports_imports.csv",
+    "format": {"type": "csv"}
+  },
+
+  "transform": [
+      {"calculate": "format(datum.Value, '.1f') + '%'", "as": "ValueLabel"}
+  ],
+
+  "layer": [
+    {
+      "mark": {
+        "type": "rect",
+        "color": "lightgray",
+        "opacity": 0.1
+      },
+      "encoding": {
+        "x": {
+          "datum": {"year": 2020, "month": 1, "date": 1},
+          "type": "temporal"
+        },
+        "x2": {
+          "datum": {"year": 2021, "month": 12, "date": 31}, 
+          "type": "temporal"
+        }
+      }
+    },
+
+    {
+      "mark": {"type": "line", "strokeWidth": 3, "strokeCap": "round"},
+      "encoding": {
+        "x": {
+          "field": "Year",
+          "type": "temporal",
+          "timeUnit": "year",
+          "title": "Year",
+          "axis": {"grid": false, "labelAngle": 0, "tickCount": {"interval": "year", "step": 1}}
+        },
+        "y": {
+          "field": "Value",
+          "type": "quantitative",
+          "title": "Trade (% of GDP)"
+        },
+        "color": {
+          "field": "Indicator Name",
+          "type": "nominal",
+          "title": null,
+          "scale": {"range": ["#7076BD", "#7aa7c0"]},
+          "legend": null
+        },
+        "tooltip": [
+          {"field": "Year", "title": "Year", "type": "temporal", "format": "%Y"},
+          {"field": "Indicator Name", "title": "Indicator"},
+          {"field": "ValueLabel", "title": "Value"}
+        ]
+      }
+    },
+
+    {
+      "mark": {"type": "circle", "size": 60, "opacity": 1},
+      "encoding": {
+        "x": {"field": "Year", "type": "temporal"},
+        "y": {"field": "Value", "type": "quantitative"},
+        "color": {"field": "Indicator Name", "type": "nominal", "legend": null},
+        "tooltip": [
+          {"field": "Year", "title": "Year", "type": "temporal", "format": "%Y"},
+          {"field": "Indicator Name", "title": "Indicator"},
+          {"field": "ValueLabel", "title": "Value"}
+        ]
+      }
+    },
+
+    {
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "dx": -80,
+        "dy": -65,
+        "fontSize":13,
+        "color": "#7aa7c0"
+      },
+      "encoding": {
+        "text": {"value": "Imports"}
+      }
+    },
+
+    {
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "dx": -80,
+        "dy": -150,
+        "fontSize":13,
+        "color": "#7076BD"
+      },
+      "encoding": {
+        "text": {"value": "Exports"}
+      }
+    }
+  ],
+  "config": {
+    "background": "white",
+    "view": {"stroke": null},
+    "axis": {"labelFont": "Arial", "titleFont": "Arial"},
+    "legend": {"disable": true}
+  }
+}

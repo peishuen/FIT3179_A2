@@ -1,0 +1,76 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 800,
+  "height": 580,
+
+  "data": {
+    "url": "https://raw.githubusercontent.com/peishuen/FIT3179_A2/main/idioms/dumbbell_plot/gdp_state_real_supply.csv",
+    "format": {"type": "csv"}
+  },
+
+  "title": {
+    "text": "State GDP Growth Rates (2017–2023)",
+    "fontSize": 18,
+    "fontWeight": "bold",
+    "anchor": "start",
+    "offset": 15
+  },
+
+  "transform": [
+    {"filter": "datum.series == 'growth_yoy'"},
+    {"filter": "datum.sector == 'p0'"},
+    {"filter": "datum.state != 'Supra'"},
+    {"filter": "year(datum.date) == 2017 || year(datum.date) == 2023"},
+    {"calculate": "year(datum.date)", "as": "year"},
+    {
+      "pivot": "year",
+      "value": "value",
+      "groupby": ["state"]
+    },
+    {"calculate": "datum['2023'] - datum['2017']", "as": "change"},
+    {"calculate": "datum.change >= 0 ? 'Growth' : 'Decline'", "as": "direction"},
+    {"calculate": "format(datum['2017'], '.1f') + '%'", "as": "growth_2017_label"},
+    {"calculate": "format(datum['2023'], '.1f') + '%'", "as": "growth_2023_label"},
+    {"calculate": "format(datum.change, '.1f') + '%'", "as": "change_label"}
+  ],
+
+  "layer": [
+    {
+      "mark": {"type": "rule", "strokeWidth": 2, "opacity": 0.5, "color": "#888888"},
+      "encoding": {
+        "y": {"field": "state", "type": "nominal", "sort": "-x", "title": "State"},
+        "x": {"field": "2017", "type": "quantitative", "title": "GDP Growth Rate (%)"},
+        "x2": {"field": "2023"},
+        "tooltip": [{"field": "change_label", "title": "Change (2017 → 2023)"}]
+      }
+    },
+    {
+      "mark": {"type": "circle", "size": 90, "color": "#1989eb", "opacity": 1},
+      "encoding": {
+        "y": {"field": "state", "type": "nominal"},
+        "x": {"field": "2017", "type": "quantitative"},
+        "tooltip": [
+          {"field": "state", "title": "State"},
+          {"field": "growth_2017_label", "title": "2017 Growth"}
+        ]
+      }
+    },
+    {
+      "mark": {"type": "circle", "size": 90, "color": "#b66129", "opacity": 1},
+      "encoding": {
+        "y": {"field": "state", "type": "nominal"},
+        "x": {"field": "2023", "type": "quantitative"},
+        "tooltip": [
+          {"field": "state", "title": "State"},
+          {"field": "growth_2023_label", "title": "2023 Growth"}
+        ]
+      }
+    }
+  ],
+
+  "config": {
+    "view": {"stroke": null},
+    "axis": {"labelFont": "Arial", "titleFont": "Arial", "grid": false},
+    "background": "white"
+  }
+}

@@ -1,0 +1,92 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 800,
+  "height": 400,
+
+  "data": {
+    "url": "https://raw.githubusercontent.com/peishuen/FIT3179_A2/main/idioms/bump_chart/cpi_inflation.csv",
+    "format": {"type": "csv"}
+  },
+
+  "title": {
+    "text": "Top CPI Categories: Inflation Rank Shifts",
+    "fontSize": 18,
+    "fontWeight": "bold",
+    "anchor": "middle",
+    "offset": 15
+  },
+
+  "encoding": {
+    "x": {
+      "field": "year",
+      "type": "temporal",
+      "title": "Year",
+      "timeUnit": "year",
+      "axis": {
+        "format": "%Y",
+        "labelAngle": 0,
+        "labelFontSize": 12,
+        "grid": true,
+        "tickCount": {"interval": "year", "step": 1}
+      }
+    },
+
+    "y": {
+      "field": "rank",
+      "type": "quantitative",
+      "title": "Rank",
+      "scale": {"reverse": true, "domain": [1, 7], "nice": false},
+      "axis": {
+        "values": [1, 2, 3, 4, 5, 6, 7],
+        "tickMinStep": 1,
+        "grid": false,
+        "labelFontSize": 12
+      }
+    },
+
+    "color": {
+      "field": "division_name",
+      "type": "nominal",
+      "scale": {
+        "range": [
+          "#E69F00",
+          "#56B4E9",
+          "#0072B2",
+          "#CC79A7",
+          "#baaf14",
+          "#999999",
+          "#9467BD"
+        ]
+      },
+      "legend": null
+    },
+
+    "detail": {"field": "division_name"},
+
+    "tooltip": [
+      {"field": "division_name", "type": "nominal", "title": "Division"},
+      {"field": "date", "type": "temporal", "title": "Year", "format": "%Y"},
+      {"field": "inflation", "type": "quantitative", "format": ".2f", "title": "Inflation"},
+      {"field": "rank", "type": "quantitative", "title": "Rank"}
+    ]
+  },
+
+  "layer": [
+    { "mark": {"type": "line", "strokeWidth": 4} },
+    { "mark": {"type": "point", "filled": true, "size": 90, "opacity": 1} },
+    {
+      "transform": [{"filter": "year(datum.date) == 2023"}],
+      "mark": {"type": "text", "align": "left", "dx": 6, "fontSize": 12},
+      "encoding": {
+        "text": {"field": "division_name"},
+        "color": {"field": "division_name"}
+      }
+    }
+  ],
+
+  "config": {
+    "view": {"stroke": null},
+    "axis": {"labelFont": "Arial", "titleFont": "Arial"},
+    "background": "white"
+  }
+}
