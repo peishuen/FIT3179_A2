@@ -2,10 +2,9 @@
     "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
     "width": 700,
     "height": 400,
+    
     "title": {
-        "text": "Malaysia’s Real GDP Growth Rate", 
-        "fontSize": 18, 
-        "fontWeight": "bold"
+        "text": "Malaysia's GDP Growth Rate (2017-2023)"
     },
 
     "data": {
@@ -17,52 +16,232 @@
         {"filter": "datum.series == 'growth_yoy'"},
         {"filter": "year(datum.date) >= 2017 && year(datum.date) <= 2023"},
         {"calculate": "year(datum.date)", "as": "year"},
+        {"calculate": "format(datum.gdp, '.2f') + '%'", "as": "gdp_label"}
+    ],
+
+    "layer": [
         {
-            "calculate": "format(datum.gdp, '.2f') + '%'",
-            "as": "gdp_label"
+            "params": [
+                {
+                    "name": "highlight",
+                    "select": {
+                        "type": "point",
+                        "fields": ["year"],
+                        "on": "mouseover", 
+                        "clear": "mouseout"
+                    }
+                }
+            ],
+
+            "mark": {"type": "bar"}, 
+
+            "encoding": {
+                "x": {
+                    "field": "year",
+                    "type": "ordinal",
+                    "title": "Year",
+                    "axis": {"labelAngle": 0, "grid": false}
+                },
+
+                "y": {
+                    "field": "gdp",
+                    "type": "quantitative",
+                    "title": "Growth Rate (%)"
+                },
+
+                "color": {
+                    "condition": [
+                        {"test": "datum.year == 2020", "value": "#F4BB44"},
+                        {"test": "datum.year == 2022", "value": "#FAD12A"},
+                        {
+                            "param": "highlight",
+                            "value": "#adadad"
+                        }
+                    ],
+                    "value": "#c5c3be"
+                },
+
+                "opacity": {
+                    "condition": {"param": "highlight", "value": 1},
+                    "value": 0.5
+                },
+
+                "tooltip": [
+                    {"field": "year", "type": "ordinal", "title": "Year"},
+                    {"field": "gdp_label", "type": "nominal", "title": "GDP Growth"}
+                ]
+            }
+        },
+
+        {   
+            "data": {
+                "values": [{"year": 2022}]
+            },
+            "mark": {
+                "type": "rect",
+                "color": "#fff8e1",
+                "stroke": "#c08d01"
+            },
+            "encoding": {
+                "x": {"datum": 2020, "type": "ordinal"},
+                "x2": {"datum": 2021, "type": "ordinal"},
+                "y": {"datum": 8.5},
+                "y2": {"datum": 6.3},
+                "opacity": {
+                    "condition": {
+                    "test": "!length(data('highlight_store')) || datum['year'] == highlight['year']",
+                    "value": 1
+                    },
+                    "value": 0
+                }
+            }
+        },
+
+        {
+            "data": {
+                "values": [{"year": 2022}]
+            },
+            "mark": {
+                "type": "text",
+                "align": "center",
+                "baseline": "middle",
+                "dx": 50,
+                "dy": -150
+            },
+            "encoding": {
+                "x": {"datum": 2020, "type": "ordinal"},
+                "text": {
+                "value": ["Exports and", "reopening fuel", "rapid rebound"]
+                },
+                "opacity": {
+                    "condition": {
+                    "test": "!length(data('highlight_store')) || datum['year'] == highlight['year']",
+                    "value": 1
+                    },
+                    "value": 0
+                }
+            }
+        },
+
+        {   "data": {
+                "values": [{"year": 2022}]
+            },
+            "mark": {
+                "type": "rule",
+                "color": "#c08d01",
+                "strokeWidth": 1.1
+            },
+            "encoding": {
+                "x": {"datum": 2021, "type": "ordinal"},
+                "x2": {"datum": 2022, "type": "ordinal"},
+                "y": {"datum": 7.4},
+                "y2": {"datum": 6.3},
+                "opacity": {
+                    "condition": {
+                    "test": "!length(data('highlight_store')) || datum['year'] == highlight['year']",
+                    "value": 1
+                    },
+                    "value": 0
+                }
+            }
+        },
+
+        {   
+            "data": {
+                "values": [{"year": 2020}]
+            },
+            "mark": {
+                "type": "rect",
+                "color": "#fff8e1",
+                "stroke": "#c08d01"
+            },
+            "encoding": {
+                "x": {"datum": 2017, "type": "ordinal"},
+                "x2": {"datum": 2019, "type": "ordinal"},
+                "y": {"datum": -2.3},
+                "y2": {"datum": -4.4},
+                "opacity": {
+                    "condition": {
+                    "test": "!length(data('highlight_store')) || datum['year'] == highlight['year']",
+                    "value": 1
+                    },
+                    "value": 0
+                }
+            }
+        },
+
+        {
+            "data": {
+                "values": [{"year": 2020}]
+            },
+            "mark": {
+                "type": "text",
+                "align": "center",
+                "baseline": "middle",
+                "dx": 0,
+                "dy": 120
+            },
+            "encoding": {
+                "x": {"datum": 2018, "type": "ordinal"},
+                "text": {
+                "value": ["Lockdowns froze domestic", "demand - first GDP", "contraction since 1998"]
+                },
+                "opacity": {
+                    "condition": {
+                    "test": "!length(data('highlight_store')) || datum['year'] == highlight['year']",
+                    "value": 1
+                    },
+                    "value": 0
+                }
+            }
+        },
+
+        {
+            "data": {
+                "values": [{"year": 2020}]
+            },
+            "mark": {
+                "type": "rule",
+                "color": "#c08d01",
+                "strokeWidth": 1.1
+            },
+            "encoding": {
+                "x": {"datum": 2019, "type": "ordinal"},
+                "x2": {"datum": 2020, "type": "ordinal"},
+                "y": {"datum": -3.3},
+                "y2": {"datum": -3.3},
+                "opacity": {
+                    "condition": {
+                    "test": "!length(data('highlight_store')) || datum['year'] == highlight['year']",
+                    "value": 1
+                    },
+                    "value": 0
+                }
+            }
         }
     ],
 
-    "mark": {
-        "type":"bar"
-    }, 
-
-    "encoding": {
-        "x": {
-            "field": "year",
-            "type": "ordinal",
-            "title": "Year",
-            "axis": {
-                "labelAngle": 0,
-                "grid": false
-            }
-        },
-
-        "y": {
-            "field": "gdp",
-            "type": "quantitative",
-            "title": "Growth Rate (%)",
-            "axis": {
-                "grid": true
-            }
-        },
-
-        "color": {
-            "condition": {
-                "test": "datum.gdp < 0",
-                "value": "#e8a83a"
-            },
-            "value": "#c986eb"
-        },
-
-        "tooltip": [
-            {"field": "year", "type": "ordinal", "title":"Year"},
-            {"field": "gdp_label", "type": "nominal", "title": "GDP Growth"}
-        ]
-    },
-
     "config": {
-        "view": {"stroke": null},
-        "axis": {"labelFont": "Arial", "titleFont": "Arial"}
-    }
+        "title": {
+            "fontSize": 24, 
+            "fontWeight": "bold", 
+            "anchor": "middle", 
+            "offset": 20,
+            "color": "#5c5c5c"
+        },
+        "axis": {
+            "titleFontSize": 12.5, 
+            "titlePadding": 18, 
+            "titleFontWeight": 600, 
+            "titleColor": "#858585",
+            "labelFontSize": 10, 
+            "labelFontWeight": 200,
+            "labelColor": "#858585"
+        },
+        "text": {
+            "fontWeight": "lighter",
+            "fontSize": 12.5,
+            "color": "#858585"
+        }
+    }  
 }

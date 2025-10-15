@@ -1,14 +1,12 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": 750,
-  "height": 420,
+  "width": 700,
+  "height": 400,
+
   "title": {
-    "text": "Malaysia’s Trade (% of GDP, 2017–2023)",
-    "fontSize": 18,
-    "fontWeight": "bold",
-    "anchor": "middle",
-    "offset": 15
+    "text": "Malaysia’s Exports and Imports (2017-2023)"
   },
+
   "data": {
     "url": "https://raw.githubusercontent.com/peishuen/FIT3179_A2/main/idioms/multi_line_chart/exports_imports.csv",
     "format": {"type": "csv"}
@@ -38,6 +36,17 @@
     },
 
     {
+      "params": [
+          {
+            "name": "highlight",
+            "select": {
+              "type": "point",
+              "fields": ["Indicator Name"],
+              "on": "click",
+              "clear": "dblclick"
+            }
+          }
+      ],
       "mark": {"type": "line", "strokeWidth": 3, "strokeCap": "round"},
       "encoding": {
         "x": {
@@ -56,8 +65,12 @@
           "field": "Indicator Name",
           "type": "nominal",
           "title": null,
-          "scale": {"range": ["#7076BD", "#7aa7c0"]},
+          "scale": {"range": ["#DC7DE3", "#54A5DE"]},
           "legend": null
+        },
+        "opacity": {
+          "condition": {"param": "highlight", "value": 1},
+          "value": 0.2
         },
         "tooltip": [
           {"field": "Year", "title": "Year", "type": "temporal", "format": "%Y"},
@@ -70,9 +83,22 @@
     {
       "mark": {"type": "circle", "size": 60, "opacity": 1},
       "encoding": {
-        "x": {"field": "Year", "type": "temporal"},
-        "y": {"field": "Value", "type": "quantitative"},
-        "color": {"field": "Indicator Name", "type": "nominal", "legend": null},
+        "x": {
+          "field": "Year", 
+          "type": "temporal"
+        },
+        "y": {
+          "field": "Value", 
+          "type": "quantitative"
+        },
+        "color": {
+          "field": "Indicator Name", 
+          "type": "nominal", "legend": null
+        },
+        "opacity": {
+          "condition": {"param": "highlight", "value": 1},
+          "value": 0.2
+        },
         "tooltip": [
           {"field": "Year", "title": "Year", "type": "temporal", "format": "%Y"},
           {"field": "Indicator Name", "title": "Indicator"},
@@ -82,16 +108,62 @@
     },
 
     {
+      "data": {
+        "values": [{"Indicator Name": "Imports"}]
+      },
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "dx": -180,
+        "dy": -70,
+        "color": "#54A5DE",
+        "fontSize": 15,
+        "fontWeight": 600
+      },
+      "encoding": {
+        "text": {"field": "Indicator Name"},
+        "opacity": {
+          "condition" : {"param": "highlight", "value": 1},
+          "value": 0.2
+        }
+      }
+    },
+
+    {
+      "data": {
+        "values": [{"Indicator Name": "Exports"}]
+      },
       "mark": {
         "type": "text",
         "align": "center",
         "dx": -80,
-        "dy": -65,
-        "fontSize":13,
-        "color": "#7aa7c0"
+        "dy": -150,
+        "color": "#DC7DE3",
+        "fontSize": 15,
+        "fontWeight": 600
       },
       "encoding": {
-        "text": {"value": "Imports"}
+        "text": {"field": "Indicator Name"},
+        "opacity": {
+          "condition": {"param": "highlight", "value": 1},
+          "value": 0.2
+        }
+      }
+    },
+
+    {
+      "mark": {
+        "type": "rect",
+        "color": "#fff8e1",
+        "stroke": "#c08d01",
+        "strokeWidth": 1.2,
+        "cornerRadius": 0
+      },
+      "encoding": {
+        "x": {"datum": {"year": 2018, "month": 10, "date": 1}, "type": "temporal"},
+        "x2": {"datum": {"year": 2019, "month": 12, "date": 1}, "type": "temporal"},
+        "y": {"datum": 48},
+        "y2": {"datum": 38}
       }
     },
 
@@ -99,20 +171,91 @@
       "mark": {
         "type": "text",
         "align": "center",
-        "dx": -80,
-        "dy": -150,
-        "fontSize":13,
-        "color": "#7076BD"
+        "baseline": "middle",
+        "dx": -47,
+        "dy": -30,
+        "fontWeight": "lighter",
+        "fontSize": 13,
+        "color": "#858585"
       },
       "encoding": {
-        "text": {"value": "Exports"}
+        "x": {"datum": {"year": 2019, "month": 10, "date": 1}, "type": "temporal"},
+        "text": {
+          "value": ["Movement restrictions", "and border closures","disrupted trade flows."]
+        }
+      }
+    },
+
+    {
+      "data": {
+        "values": [{"Indicator Name": "Imports"}]
+      },
+      "mark": {
+        "type": "rule",
+        "color": "#c08d01",
+        "strokeWidth": 1.3
+      },
+      "encoding": {
+        "x": {"datum": {"year": 2019, "month": 7, "date": 1}, "type": "temporal"},
+        "x2": {"datum": {"year": 2020, "month": 1, "date": 1}, "type": "temporal"},
+        "y": {"datum": 48},
+        "y2": {"datum": 55.2},
+        "opacity": {
+            "condition": {
+              "test": "!length(data('highlight_store')) || datum['Indicator Name'] == highlight['Indicator Name']",
+              "value": 1
+            },
+            "value": 0
+        }
+      }
+    },
+
+    {
+      "data": {
+        "values": [{"Indicator Name": "Exports"}]
+      },
+      "mark": {
+        "type": "rule",
+        "color": "#c08d01",
+        "strokeWidth": 1.3
+      },
+      "encoding": {
+        "x": {"datum": {"year": 2019, "month": 7, "date": 1}, "type": "temporal"},
+        "x2": {"datum": {"year": 2020, "month": 1, "date": 1}, "type": "temporal"},
+        "y": {"datum": 48},
+        "y2": {"datum": 61.6},
+        "opacity": {
+            "condition": {
+              "test": "!length(data('highlight_store')) || datum['Indicator Name'] == highlight['Indicator Name']",
+              "value": 1
+            },
+            "value": 0
+        }
       }
     }
   ],
+  
   "config": {
-    "background": "white",
-    "view": {"stroke": null},
-    "axis": {"labelFont": "Arial", "titleFont": "Arial"},
-    "legend": {"disable": true}
-  }
+    "title": {
+      "fontSize": 24, 
+      "fontWeight": "bold", 
+      "anchor": "middle", 
+      "offset": 20,
+      "color": "#5c5c5c"
+    },
+    "axis": {
+      "titleFontSize": 12.5, 
+      "titlePadding": 18, 
+      "titleFontWeight": 600, 
+      "titleColor": "#858585",
+      "labelFontSize": 10, 
+      "labelFontWeight": 200,
+      "labelColor": "#858585"
+    },
+    "text": {
+      "fontWeight": "lighter",
+      "fontSize": 13,
+      "color": "#858585"
+    }
+  }  
 }

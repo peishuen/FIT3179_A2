@@ -1,146 +1,111 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": 700,
-  "height": 400,
-
   "data": {
-    "url": "https://raw.githubusercontent.com/peishuen/FIT3179_A2/main/idioms/line_chart/national_unemployment_qtr.csv",
+    "url": "https://raw.githubusercontent.com/peishuen/FIT3179_A2/refs/heads/main/idioms/line_chart/unemployment_monthly.csv",
     "format": {"type": "csv"}
   },
-
   "title": {
-    "text": "National Unemployment Trend in Malaysia",
-    "fontSize": 16,
-    "fontWeight": "bold",
-    "anchor": "middle",
-    "offset": 20
+    "text": "National Unemployment Rate (2017-2023)"
   },
 
-  "layer": [
+  "transform": [
     {
-      "mark": {
-        "type": "rect",
-        "color": "lightgray",
-        "opacity": 0.1
-      },
-      "encoding": {
-        "x": {
-          "datum": {"year": 2020, "month": 1, "date": 1},
-          "type": "temporal"
+      "calculate": "format(datum.unemployment_rate, '.1f') + '%'",
+      "as": "unemployment_rate_label"
+    }
+  ],
+  "vconcat": [
+      {
+        "width": 700,
+        "height": 300,
+        "mark": {
+          "type": "line",
+          "color": "#68B0A5",
+          "strokeWidth": 3
         },
-        "x2": {
-          "datum": {"year": 2021, "month": 12, "date": 31}, 
-          "type": "temporal"
-        }
-      }
-    },
-
-    {
-      "transform": [
-        {
-          "calculate": "format(datum.unemployment_rate, '.1f') + '%'",
-          "as": "unemployment_rate_label"
-        }
-      ],
-      "mark": {
-        "type": "line",
-        "color": "#b4510f",
-        "strokeWidth": 3,
-        "point": {"size": 38, "color": "#b4510f"}
-      },
-      "encoding": {
-        "x": {
-          "field": "date",
-          "type": "temporal",
-          "timeUnit": "yearmonth",
-          "title": "Time Period",
-          "axis": {
-            "format": "%b %Y",
-            "labelAngle": -45,
-            "grid": false
-          }
-        },
-        "y": {
-          "field": "unemployment_rate",
-          "type": "quantitative",
-          "title": "Unemployment Rate (%)"
-        },
-        "tooltip": [
-          {
+        "encoding": {
+          "x": {
             "field": "date",
             "type": "temporal",
+            "title": "Date",
             "timeUnit": "yearmonth",
-            "title": "Month and Year",
-            "format": "%b %Y"
+            "scale": {"domain": {"param": "brush"}},
+            "axis": {"format": "%b %Y", "labelAngle": -45}
           },
-          {
-            "field": "unemployment_rate_label",
-            "type": "nominal",
-            "title": "Unemployment Rate"
+          "y": {
+            "field": "unemployment_rate",
+            "type": "quantitative",
+            "title": "Unemployment Rate (%)"
+          }, 
+          "tooltip": [
+              {
+                "field": "date",
+                "type": "temporal",
+                "timeUnit": "yearmonth",
+                "title": "Date",
+                "format": "%b %Y"
+              },
+              {
+                "field": "unemployment_rate_label",
+                "type": "nominal",
+                "title": "Unemployment Rate"
+              }
+          ]
+        }
+      }, 
+
+      {
+        "width": 700,
+        "height": 80,
+        "mark": {
+          "type": "area",
+          "color": "#B2D7D1", "opacity": 0.7
+        }, 
+        "params": [
+          {"name": "brush", "select": {"type": "interval", "encodings": ["x"]}}
+        ],
+        "encoding": {
+          "x": {
+            "field": "date",
+            "type": "temporal",
+            "title": "Year",
+            "axis": {
+              "grid": false, 
+              "labelAngle": 0, 
+              "tickCount": {"interval": "year", "step": 1}
+            }
+          }, 
+          "y": {
+            "field": "unemployment_rate",
+            "type": "quantitative",
+            "title": "Unemployment Rate (%)",
+            "axis": {"tickCount": 3, "grid": false}
           }
-        ]
-      }
-    },
-
-    {
-      "mark": {
-        "type": "text",
-        "align": "center",
-        "dx": 10,
-        "dy": -210,
-        "fontSize": 12,
-        "color": "#949090"
-      },
-      "encoding": {
-        "text": {"value": "COVID-19 Impact Period"}
-      }
-    },
-
-    {
-      "mark": {
-        "type": "rect",
-        "color": "#fff8e1",
-        "stroke": "#e6cf91",
-        "strokeWidth": 1.2,
-        "cornerRadius": 5
-      },
-      "encoding": {
-        "x": {"datum": {"year": 2022, "month": 3, "date": 1}, "type": "temporal"},
-        "x2": {"datum": {"year": 2023, "month": 10, "date": 1}, "type": "temporal"},
-        "y": {"datum": 5.15},
-        "y2": {"datum": 4.35}
-      }
-    },
-
-    {
-      "mark": {
-        "type": "text",
-        "align": "center",
-        "dx": 110,
-        "dy": -160,
-        "fontSize": 12,
-        "color": "#3a3a3a"
-      },
-      "encoding": {
-        "x": {"datum": {"year": 2021, "month": 10, "date": 1}, "type": "temporal"},
-        "text": {
-          "value": ["Borders reopened —", "tourism & hospitality", "recovery"]
         }
       }
-    },
+  ],
 
-    {
-      "mark": {
-        "type": "rule",
-        "color": "#e6cf91",
-        "strokeWidth": 2
-      },
-      "encoding": {
-        "x": {"datum": {"year": 2022, "month": 4, "date": 1}, "type": "temporal"},
-        "x2": {"datum": {"year": 2022, "month": 11, "date": 1}, "type": "temporal"},
-        "y": {"datum": 3.9},
-        "y2": {"datum": 4.35}
-      }
+  "config": {
+    "title": {
+      "fontSize": 24, 
+      "fontWeight": "bold", 
+      "anchor": "middle", 
+      "offset": 20,
+      "color": "#5c5c5c"
+    },
+    "axis": {
+      "titleFontSize": 12.5, 
+      "titlePadding": 18, 
+      "titleFontWeight": 600, 
+      "titleColor": "#858585",
+      "labelFontSize": 10, 
+      "labelFontWeight": 200,
+      "labelColor": "#858585"
+    },
+    "text": {
+      "fontWeight": "lighter",
+      "fontSize": 12.5,
+      "color": "#858585"
     }
-  ]
+  }    
 }

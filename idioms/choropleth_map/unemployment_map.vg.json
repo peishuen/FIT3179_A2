@@ -1,11 +1,11 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": 830,
-  "height": 400,
+  "width": 800,
+  "height": 500,
 
   "title": {
-    "text": "Unemployment Rate by State in Malaysia",
-    "dy": 30
+    "text": "Average State-Level Unemployment During COVID-19 (2020-2021)",
+    "dy": 60
   },
 
   "projection": { "type": "identity", "reflectY": true },
@@ -36,45 +36,83 @@
           }
         },
         {
+          "calculate": "datum.u_rate < 2 ? 'Low (Below 2%)' : datum.u_rate < 3 ? 'Lower-Mid (2–2.9%)' : datum.u_rate < 4 ? 'Mid (3–3.9%)' : datum.u_rate < 5 ? 'Upper-Mid (4–4.9%)' : 'High (≥5%)'",
+          "as": "u_group"
+        },
+        {
           "calculate": "format(datum.u_rate, '.2f') + '%'",
           "as": "u_rate_label"
+        }
+      ],
+      "params": [
+        {
+          "name": "colorSelect",
+          "select": {
+            "type": "point",
+            "fields": ["u_group"],
+            "on": "click",
+            "clear": "dblclick"
+          },
+          "bind": "legend"
         }
       ],
       "mark": { "type": "geoshape", "stroke": "white", "strokeWidth": 0.6 },
       "encoding": {
         "color": {
-          "field": "u_rate",
-          "type": "quantitative",
-          "title": "Unemployment Rate (%)",
-          "scale": {
-            "type": "threshold",
-            "domain": [2, 3, 4, 5],
-            "range": [
-              "#d4eeff",
-              "#9ccafc",
-              "#5aa2f5",
-              "#276ec9",
-              "#08306b"
-            ]
+          "condition": {
+            "param": "colorSelect",
+            "field": "u_group",
+            "type": "nominal",
+            "scale": {
+              "domain": [
+                "Low (Below 2%)",
+                "Lower-Mid (2–2.9%)",
+                "Mid (3–3.9%)",
+                "Upper-Mid (4–4.9%)",
+                "High (≥5%)"
+              ],
+              "range": [
+                "#d4eeff",
+                "#9ccafc",
+                "#5aa2f5",
+                "#276ec9",
+                "#08306b"
+              ]
+            },
+            "legend": {
+              "title": "Unemployment Category",
+              "offset": -50
+            }
           },
-          "legend": {
-            "orient": "right",
-            "titleFontSize": 11,
-            "labelFontSize": 10,
-            "gradientLength": 180,
-            "gradientThickness": 25
-          }
+          "value": "#d3d3d3"
         },
         "tooltip": [
           { "field": "properties.name", "title": "State" },
-          { "field": "u_rate_label", "type": "nominal", "title": "Unemployment Rate" }
+          { "field": "u_rate_label", "title": "Unemployment Rate" },
+          { "field": "u_group", "title": "Category" }
         ]
       }
     }
   ],
 
   "config": {
-    "title": { "anchor": "middle", "fontSize": 18, "baseline": "top" },
+    "title": {
+      "fontSize": 24,
+      "fontWeight": 700,
+      "anchor": "middle",
+      "color": "#5c5c5c"
+    },
+    "legend": {
+      "labelColor": "#7c7c7c",
+      "titleColor": "#777777",
+      "symbolType": "square",    
+      "titleFontSize": 15,  
+      "titlePadding": 8,
+      "labelFontSize": 13,
+      "orient": "bottom",
+      "symbolSize": 200,           
+      "labelLimit": 200
+    },
     "view": { "stroke": null }
   }
 }

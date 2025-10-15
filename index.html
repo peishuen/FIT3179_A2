@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Resilient Malaysia: The Economic Journey Before, During and After COVID-19</title>
+
+        <script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.1.0"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.17.0"></script>
+
+        <script src="idioms/bar_chart/gdp_growth.js"></script>
+        <script src="idioms/bump_chart/cpi_inflation.js"></script>
+        <script src="idioms/choropleth_map/unemployment_map.js"></script>
+        <script src="idioms/dumbbell_plot/gdp_by_state.js"></script>
+        <script src="idioms/line_chart/national_unemployment_trend.js"></script>
+        <script src="idioms/multi_line_chart/exports_imports.js"></script>
+
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+
+    <body>
+        <!--Title-->
+        <header>
+            <h1>Resilient Malaysia</h1>
+            <p class="subtitle">The Economic Journey Before, During and After COVID-19</p>
+        </header>
+
+        <!--GDP Growth-->
+        <section id="bar_chart" class="viz-row left-chart">
+            <div class="chart-box">
+                <div id="bar_chart_vis"></div>
+            </div>
+            <div class="text-box">
+                <h2>From Slowdown to Strong Comeback</h2>
+                <p>
+                    Before the pandemic, Malaysia’s economic growth was already moderating as global trade softened. When 2020 struck, strict 
+                    lockdowns froze domestic activity and triggered the nation’s first GDP contraction in more than two decades. Yet within 
+                    two years, the economy staged a strong rebound, lifted by reopened borders, renewed exports, and returning consumer demand. 
+                    This reveals how Malaysia’s trade-driven economy could recover rapidly once mobility and global connections resumed.
+                </p>
+            </div>
+        </section>
+
+        <!--Unemployment Trend-->
+        <section id="line_chart" class="viz-row right-chart">
+            <div class="text-box">
+                <h2>Jobs Lost, Then Slowly Regained</h2>    
+                <p>
+                    The onset of COVID-19 in 2020 caused a sharp and immediate rise in unemployment. After years of stability, Malaysia’s job 
+                    market was shaken as restrictions forced widespread closures, especially in the service and tourism sectors. As movement 
+                    controls eased, employment gradually recovered and confidence returned, though recovery remained uneven across industries. 
+                    This shows that Malaysia’s labour rebound after COVID-19 was powered as much by renewed optimism and reopening as by direct job creation.
+                </p>            
+            </div>
+            <div class="chart-box">
+                <div id="line_chart_vis"></div>
+            </div>
+            </div>
+        </section>
+
+        <!--Unemployment by State-->
+        <section id="choropleth_map" class="viz-row left-chart">
+            <div class="chart-box"> 
+                <div id="choropleth_map_vis"></div>
+            </div>
+            <div class="text-box">
+                <h2>Uneven Impacts Across the Nation</h2>
+                <p>
+                    Not all states felt the pandemic equally. While most of Peninsular Malaysia maintained mid-range unemployment levels, Sabah recorded 
+                    the steepest rise as tourism collapsed and mobility was restricted. These differences reflected how each state’s economic base 
+                    influenced its ability to withstand the downturn. This reveals how Malaysia’s regional diversity shaped resilience, with states 
+                    reliant on tourism and external trade being hit hardest.
+                </p>
+            </div>
+        </section>
+
+        <!--Growth Gap by State-->
+        <section id="dumbbell_chart" class="viz-row right-chart">
+            <div class="text-box">
+                <h2>Recovery at Different Speeds</h2>
+                <p>
+                    By 2023, growth had returned across most states, but the pace varied. Johor, Melaka, and Pahang saw faster rebounds, supported by 
+                    construction activity and cross-border projects linked to Singapore. In contrast, others continued to trail behind as domestic 
+                    demand and exports recovered more slowly. This shows that Malaysia’s post-COVID recovery unfolded unevenly, reflecting each 
+                    state’s economic strengths and exposure to regional trade flows.
+                </p>
+            </div>
+            <div class="chart-box">
+                <div id="dumbbell_chart_vis"></div>
+            </div>
+        </section>
+
+        <!--CPI-->
+        <section id="bump_chart" class="viz-row left-chart">
+            <div class="chart-box">
+                <div id="bump_chart_vis"></div>
+            </div>
+            <div class="text-box">
+                <h2>A Shift in What Became Expensive</h2>
+                <p>
+                    As the economy reopened, the main drivers of inflation shifted. Dining and accommodation costs rose quickly as social life 
+                    resumed, while health expenses climbed with greater demand for medical care and products. Meanwhile, housing and utilities 
+                    saw gentler price increases, easing pressure on essential costs of living. This reveals how changing lifestyles and 
+                    consumption patterns redefined Malaysia’s post-pandemic inflation trends.
+                </p>
+            </div>
+        </section>
+
+        <!--Trade-->
+        <section id="multi_line_chart" class="viz-row right-chart">
+            <div class="text-box">
+                <h2>Trade Flows Interrupted, Then Revived</h2>
+                <p>
+                    Malaysia’s role in global trade was severely disrupted in 2020, when border closures and supply chain breakdowns slowed 
+                    both exports and imports. Once restrictions lifted, trade flows rebounded rapidly, returning to near pre-pandemic levels 
+                    as international demand recovered. This shows that Malaysia’s resilience stemmed from the same openness that once made 
+                    it vulnerable, as global reconnection became the key engine of its revival.
+                </p>
+            </div>
+            <div class="chart-box">
+                <div id="multi_line_chart_vis"></div>
+            </div>
+        </section>
+
+        <footer>
+            <p>
+                Author: <strong>Ooi Pei Shuen</strong> | Date: <strong>19 October 2025</strong>
+            </p>
+            <p>
+                Data sources: <strong>Department of Statistics Malaysia (DOSM), World Bank Open Data</strong>
+            </p>
+        </footer>
+    </body>
+
+</html>

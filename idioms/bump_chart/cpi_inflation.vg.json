@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": 800,
+  "width": 450,
   "height": 400,
 
   "data": {
@@ -8,85 +8,162 @@
     "format": {"type": "csv"}
   },
 
-  "title": {
-    "text": "Top CPI Categories: Inflation Rank Shifts",
-    "fontSize": 18,
-    "fontWeight": "bold",
-    "anchor": "middle",
-    "offset": 15
-  },
+  "title": {"text": "Changes in Consumer Price Index Categories (2019–2023)"},
+
+  "transform": [
+    {
+      "filter": "year(datum.date) == 2019 || year(datum.date) == 2020 || year(datum.date) == 2023"
+    },
+    {
+      "calculate": "format(datum.inflation, '.2f') + '%'",
+      "as": "inflationLabel"
+    }
+  ],
 
   "encoding": {
     "x": {
       "field": "year",
-      "type": "temporal",
+      "type": "ordinal",
       "title": "Year",
-      "timeUnit": "year",
-      "axis": {
-        "format": "%Y",
-        "labelAngle": 0,
-        "labelFontSize": 12,
-        "grid": true,
-        "tickCount": {"interval": "year", "step": 1}
-      }
+      "axis": {"labelAngle": 0, "labelFontSize": 12, "grid": true},
+      "scale": {"type": "point", "padding": 0}
     },
 
     "y": {
       "field": "rank",
       "type": "quantitative",
-      "title": "Rank",
-      "scale": {"reverse": true, "domain": [1, 7], "nice": false},
-      "axis": {
-        "values": [1, 2, 3, 4, 5, 6, 7],
-        "tickMinStep": 1,
-        "grid": false,
-        "labelFontSize": 12
-      }
-    },
-
-    "color": {
-      "field": "division_name",
-      "type": "nominal",
-      "scale": {
-        "range": [
-          "#E69F00",
-          "#56B4E9",
-          "#0072B2",
-          "#CC79A7",
-          "#baaf14",
-          "#999999",
-          "#9467BD"
-        ]
-      },
-      "legend": null
+      "title": "Inflation Rank",
+      "scale": {"reverse": true, "domain": [1, 7]},
+      "axis": {"tickMinStep": 1, "grid": false, "labelFontSize": 12}
     },
 
     "detail": {"field": "division_name"},
 
     "tooltip": [
-      {"field": "division_name", "type": "nominal", "title": "Division"},
-      {"field": "date", "type": "temporal", "title": "Year", "format": "%Y"},
-      {"field": "inflation", "type": "quantitative", "format": ".2f", "title": "Inflation"},
-      {"field": "rank", "type": "quantitative", "title": "Rank"}
+      {"field": "division_name", "title": "Division"},
+      {"field": "year", "title": "Year"},
+      {"field": "inflationLabel", "title": "Inflation Rate"},
+      {"field": "rank", "title": "Rank"}
     ]
   },
 
   "layer": [
-    { "mark": {"type": "line", "strokeWidth": 4} },
-    { "mark": {"type": "point", "filled": true, "size": 90, "opacity": 1} },
+    {
+      "params": [
+        {
+          "name": "highlight",
+          "select": {
+            "type": "point",
+            "fields": ["division_name"],
+            "on": "click",
+            "clear": "dblclick"
+          }
+        }
+      ],
+      "mark": {"type": "line", "strokeWidth": 4, "opacity": 0.9},
+      "encoding": {
+        "color": {
+          "condition": {
+            "test": "datum.division_name == 'Housing, Utilities, Gas & Other Fuels' || datum.division_name == 'Health' || datum.division_name == 'Restaurants & Accommodation Services'",
+            "field": "division_name",
+            "type": "nominal",
+            "scale": {
+              "domain": [
+                "Housing, Utilities, Gas & Other Fuels",
+                "Health",
+                "Restaurants & Accommodation Services"
+              ],
+              "range": ["#B87069", "#DE9514", "#6E70C2"]
+            }
+          },
+          "value": "#BEBEBE"
+        },
+        "opacity": {
+          "condition": {"param": "highlight", "value": 1},
+          "value": 0.25
+        }
+      }
+    },
+
+    {
+      "mark": {"type": "point", "filled": true, "size": 85, "opacity": 1},
+      "encoding": {
+        "color": {
+          "condition": {
+            "test": "datum.division_name == 'Housing, Utilities, Gas & Other Fuels' || datum.division_name == 'Health' || datum.division_name == 'Restaurants & Accommodation Services'",
+            "field": "division_name",
+            "type": "nominal",
+            "scale": {
+              "domain": [
+                "Housing, Utilities, Gas & Other Fuels",
+                "Health",
+                "Restaurants & Accommodation Services"
+              ],
+              "range": ["#B87069", "#DE9514", "#6E70C2"]
+            }
+          },
+          "value": "#BEBEBE"
+        },
+        "opacity": {
+          "condition": {"param": "highlight", "value": 1},
+          "value": 0.25
+        }
+      }
+    },
+
     {
       "transform": [{"filter": "year(datum.date) == 2023"}],
-      "mark": {"type": "text", "align": "left", "dx": 6, "fontSize": 12},
+      "mark": {"type": "text", "align": "left", "dx": 6, "fontSize": 13},
       "encoding": {
         "text": {"field": "division_name"},
-        "color": {"field": "division_name"}
+        "color": {
+          "condition": {
+            "test": "datum.division_name == 'Housing, Utilities, Gas & Other Fuels' || datum.division_name == 'Health' || datum.division_name == 'Restaurants & Accommodation Services'",
+            "field": "division_name",
+            "type": "nominal",
+            "scale": {
+              "domain": [
+                "Housing, Utilities, Gas & Other Fuels",
+                "Health",
+                "Restaurants & Accommodation Services"
+              ],
+              "range": ["#E69F00", "#56B4E9", "#CC79A7"]
+            }
+          },
+          "value": "#a8a8a8"
+        },
+        "opacity": {
+          "condition": {"param": "highlight", "value": 1},
+          "value": 0.25
+        }
       }
     }
   ],
 
   "config": {
-    "view": {"stroke": null},
-    "axis": {"labelFont": "Arial", "titleFont": "Arial"},
-    "background": "white"
-  }
+    "title": {
+      "fontSize": 24, 
+      "fontWeight": "bold", 
+      "anchor": "middle", 
+      "offset": 20,
+      "color": "#5c5c5c"
+    },
+    "axis": {
+      "titleFontSize": 12.5, 
+      "titlePadding": 18, 
+      "titleFontWeight": 600, 
+      "titleColor": "#858585",
+      "labelFontSize": 10, 
+      "labelFontWeight": 200,
+      "labelColor": "#858585"
+    },
+    "text": {
+      "fontWeight": "lighter",
+      "fontSize": 12.5,
+      "color": "#858585"
+    },
+    "legend": {
+      "disable": true
+    }
+  }  
 }
