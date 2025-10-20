@@ -1,7 +1,7 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": 850,
-  "height": 550,
+  "width": 800,
+  "height": 450,
 
   "title": {
     "text": "Malaysia’s Exports and Imports (2017-2023)"
@@ -135,7 +135,7 @@
         "type": "text",
         "align": "center",
         "dx": -180,
-        "dy": -95,
+        "dy": -85,
         "color": "#54859E",
         "fontWeight": 600,
         "fontSize": 17
@@ -157,7 +157,7 @@
         "type": "text",
         "align": "center",
         "dx": -80,
-        "dy": -140,
+        "dy": -155,
         "color": "#C2715F",
         "fontWeight": 600,
         "fontSize": 17
@@ -186,7 +186,7 @@
         "x": {"datum": {"year": 2022, "month": 1, "date": 15}, "type": "temporal"},
         "x2": {"datum": {"year": 2022, "month": 12, "date": 15}, "type": "temporal"},
         "y": {"datum": 60},
-        "y2": {"datum": 48},
+        "y2": {"datum": 45},
         "opacity": {
           "condition" : {"param": "highlight", "value": 1},
           "value": 0
@@ -202,8 +202,8 @@
         "type": "text",
         "align": "center",
         "baseline": "middle",
-        "dx": 70,
-        "dy": -123
+        "dx": 67,
+        "dy": -98
       },
       "encoding": {
         "text": {
@@ -250,10 +250,10 @@
         "cornerRadius": 0
       },
       "encoding": {
-        "x": {"datum": {"year": 2018, "month": 2, "date": 1}, "type": "temporal"},
+        "x": {"datum": {"year": 2018, "month": 1, "date": 1}, "type": "temporal"},
         "x2": {"datum": {"year": 2019, "month": 11, "date": 1}, "type": "temporal"},
         "y": {"datum": 48},
-        "y2": {"datum": 40}
+        "y2": {"datum": 39}
       }
     },
 
@@ -263,7 +263,7 @@
         "align": "center",
         "baseline": "middle",
         "dx": -111,
-        "dy": -35
+        "dy": -30
       },
       "encoding": {
         "x": {"datum": {"year": 2019, "month": 10, "date": 1}, "type": "temporal"},
