@@ -1,4 +1,4 @@
-/* === GLOBAL STYLES === */
+/* GLOBAL STYLES */
 body {
   font-family: 'Open Sans', sans-serif;
   margin: 0;
@@ -7,12 +7,12 @@ body {
   line-height: 1.6;
 }
 
-/* === HEADER === */
+/* HEADER */
 header {
   text-align: center;
   color: #222;
   background: none;
-  padding: 80px 0px 0px 0px;
+  padding: 80px 0px 0px 0px; 
 }
 
 header h1 {
@@ -33,10 +33,10 @@ header h1 {
 
 /* === VISUAL CARD === */
 .viz-row {
-  display: flex;
-  flex-direction: column;
+  display: flex; /* flexible layout */
+  flex-direction: column; /* stack items vertically */
   align-items: center;
-  justify-content: flex-start;
+  justify-content: flex-start; /*align items at top */
 
   max-width: 80%;
   margin: 70px auto;         
@@ -44,17 +44,17 @@ header h1 {
 
   background-color: #fff;
   border-radius: 15px;
-  box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.08); /* soft shadow */
 
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* smooth hover effect */
 }
 
 .viz-row:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+  transform: translateY(-4px); /* lift the card slightly */
+  box-shadow: 0 8px 20px rgba(0,0,0,0.12); /* stronger shadow on hover */
 }
 
-/* === TITLE BOX === */
+/* TITLE BOX */
 .title-box {
   color: #000;
   text-align: center;
@@ -72,7 +72,7 @@ header h1 {
   margin-bottom: 10px;      
 }
 
-/* === TEXT BOX === */
+/* TEXT BOX */
 .text-box {
   color: #444;
   font-size: 20px;
@@ -89,14 +89,14 @@ header h1 {
   margin-bottom: 0px;      
 }
 
-/* === CHART AREA === */
+/* CHART AREA */
 .chart-box {
   width: 100%;
   padding: 22px;
   text-align: center;
 }
 
-/* === FOOTER === */
+/* FOOTER */
 footer {
   text-align: center;
   padding: 48px 24px;
@@ -104,14 +104,14 @@ footer {
   color: #555;
 }
 
-/* === MARK TEXT === */
+/* MARK TEXT */
 mark {
   background-color: transparent;
   color: #000;
   font-weight: 700;
 }
 
-/* === FOOTER === */
+/* FOOTER */
 footer {
   text-align: left;          
   padding: 40px 60px;       
@@ -129,19 +129,19 @@ footer a {
 
 footer a:hover {
   text-decoration: underline; 
-  color: #993d00;            
+  color: #993d00;  /* darker orange on hover */
 }
 
 .vg-tooltip td.key {
   max-width: none !important;
-  white-space: normal !important;
-  text-overflow: unset !important;
-  overflow: visible !important;
+  white-space: normal !important; /* let the text to wrap to next line */
+  text-overflow: unset !important; /* show full text */
+  overflow: visible !important; /* ensure content not hidden */
 }
 .vg-tooltip {
   font-size: 15px !important;
   line-height: 1.4em !important;
-  white-space: normal !important;
+  white-space: normal !important; /* allow multi-line text wrapping */
 }
 
 
