@@ -243,7 +243,7 @@
       "anchor": "middle", 
       "offset": 20,
       "color": "#5c5c5c",
-      "dx": -25
+      "dx": -30
     },
     "axis": {
       "titleFontSize": 15, 
