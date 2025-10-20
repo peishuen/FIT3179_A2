@@ -1,7 +1,7 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": 700,
-  "height": 400,
+  "width": 850,
+  "height": 550,
 
   "data": {
     "url": "https://raw.githubusercontent.com/peishuen/FIT3179_A2/main/idioms/dumbbell_plot/gdp_state_real_supply.csv",
@@ -91,10 +91,10 @@
       },
       "mark": {"type": "rect", "color": "#fff8e1","stroke": "#c08d01"},
       "encoding": {
-        "x": {"datum": 5.3}, 
+        "x": {"datum": 5.2}, 
         "x2": {"datum": 6.95},
-        "y": {"value": 80},
-        "y2": {"value": 130},
+        "y": {"value": 105},
+        "y2": {"value": 150},
         "opacity": {
           "condition": {
           "test": "!length(data('highlight_store')) || datum['state'] == highlight['state']",
@@ -108,12 +108,12 @@
       "data": {
         "values": [{"state": "Negeri Sembilan"}]
       },
-      "mark": {"type": "text", "align": "center", "dx": 13},
+      "mark": {"type": "text", "align": "center", "dx": 11},
       "encoding": {
         "x": {"datum": 6.0},
-        "y": {"value": 100},
+        "y": {"value": 120},
         "text": {
-          "value": ["Trade slump and import duty", "collapse slowed recovery."]
+          "value": ["Weaker industrial output and", "trade exposure slowed recovery."]
         },
         "opacity": {
           "condition": {
@@ -130,10 +130,10 @@
       },
       "mark": {"type": "rule", "color": "#c08d01", "strokeWidth": 1.1},
       "encoding": {
-          "x": {"datum": 5.3},
+          "x": {"datum": 5.2},
           "x2": {"datum": 5.12},
-          "y": {"value": 110},
-          "y2": {"value": 120},
+          "y": {"value": 150},
+          "y2": {"value": 165},
           "opacity": {
             "condition": {
             "test": "!length(data('highlight_store')) || datum['state'] == highlight['state']",
@@ -168,10 +168,10 @@
       },
       "mark": {"type": "text", "align": "center", "dx": 28},
       "encoding": {
-        "x": {"datum": 5.5},
+        "x": {"datum": 5.56},
         "y": {"value": 25},
         "text": {
-          "value": ["Construction and Singapore-linked", "projects fueled post-COVID rebound."]
+          "value": ["Construction and cross-border projects", "lifted growth above pre-pandemic levels."]
         },
         "opacity": {
             "condition": {
@@ -190,7 +190,7 @@
       "encoding": {
           "x": {"datum": 4.1},
           "x2": {"datum": 4.7},
-          "y": {"value": 14},
+          "y": {"value": 18},
           "y2": {"value": 34},
           "opacity": {
             "condition": {
@@ -200,29 +200,62 @@
             "value": 0
         }
       }
+    },
+
+    {
+      "data": {
+        "values": [
+          {"year": "2019", "color": "#926EFF"},
+          {"year": "2023", "color": "#D69AD6"}
+        ]
+      },
+      "mark": {
+        "type": "point",
+        "shape": "circle",
+        "filled": true
+      },
+      "encoding": {
+        "x": {"value": 0}, 
+        "y": {"value": 0},
+        "color": {
+          "field": "year",
+          "type": "nominal",
+          "scale": {"domain": ["2019", "2023"], "range": ["#926EFF", "#D69AD6"]},
+          "legend": {
+            "title": "Year",
+            "titleFontSize": 14,
+            "labelFontSize": 13,
+            "symbolSize": 150,
+            "symbolType": "circle",
+            "titleColor": "#858585",
+            "labelColor": "#858585"
+          }
+        },
+        "opacity": {"value": 0}
+      }
     }
   ],
 
   "config": {
     "title": {
-      "fontSize": 24, 
+      "fontSize": 25, 
       "fontWeight": "bold", 
       "anchor": "middle", 
       "offset": 20,
       "color": "#5c5c5c"
     },
     "axis": {
-      "titleFontSize": 12.5, 
+      "titleFontSize": 15, 
       "titlePadding": 18, 
       "titleFontWeight": 600, 
       "titleColor": "#858585",
-      "labelFontSize": 10, 
+      "labelFontSize": 13, 
       "labelFontWeight": 200,
       "labelColor": "#858585"
     },
     "text": {
       "fontWeight": "lighter",
-      "fontSize": 12.5,
+      "fontSize": 14,
       "color": "#858585"
     }
   }  

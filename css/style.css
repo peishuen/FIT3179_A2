@@ -1,82 +1,149 @@
+/* === GLOBAL STYLES === */
 body {
-    font-family: 'Open Sans', sans-serif;
-    margin: 0;
-    background-color: #faf0e6; 
-    color: #222;
-    line-height: 1.6;
+  font-family: 'Open Sans', sans-serif;
+  margin: 0;
+  background-color: #faf0e6;
+  color: #222;
+  line-height: 1.6;
 }
 
+/* === HEADER === */
 header {
-    text-align: center;
-    color: #222;
-    background: none;
+  text-align: center;
+  color: #222;
+  background: none;
+  padding: 80px 0px 0px 0px;
 }
 
-header h1{
-    font-size: 100px;
-    margin-bottom: -25px;
-    font-weight: 800;
+header h1 {
+  font-family: 'Merriweather', serif;
+  font-size: 150px;
+  font-weight: 800;
+  margin: 0;
+  line-height: 1;
 }
 
 .subtitle {
-    font-size: 20px;
-    opacity: 0.8;
-    font-weight: 400;
+  font-size: 28px;
+  opacity: 0.8;
+  font-weight: 400;
+  margin-top: 40px;
+  margin-bottom: 0;
 }
 
+/* === VISUAL CARD === */
 .viz-row {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    max-width: 85%;
-    margin: 50px auto;
-    padding: 40px 30px;
-    background-color: #ffffff;
-    border-radius: 15px;
-    box-shadow: 0 6px 16px rgba(0,0,0,0.08);
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* smooth hover animation */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+
+  max-width: 80%;
+  margin: 70px auto;         
+  padding: 48px 56px;        
+
+  background-color: #fff;
+  border-radius: 15px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* when hover over the car */
 .viz-row:hover {
-    transform: translateY(-4px); /* lift the card slightly upward */
-    box-shadow: 0 8px 20px rgba(0,0,0,0.12)
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
 }
 
-.chart-box {
-    flex: 6
+/* === TITLE BOX === */
+.title-box {
+  color: #000;
+  text-align: center;
+  font-size: 25px;
+  font-weight: 700;
+  line-height: 1.25;
+  margin: 0;
+  padding: 20px 20px 20px 20px;      
 }
 
+.title-box h1,
+.title-box h2,
+.title-box h3 {
+  margin-top: 0;
+  margin-bottom: 10px;      
+}
+
+/* === TEXT BOX === */
 .text-box {
-    flex: 4
+  color: #444;
+  font-size: 20px;
+  line-height: 1.8;         
+  text-align: justify;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 10px 0 30px 0;   
+  font-weight: 300;
 }
 
-/* zig-zag alignment */
-.left-chart .chart-box { order: 1; padding-right: 30px}
-.left-chart .text-box { order: 2; padding-right: 20px}
+.text-box p {
+  margin-top: 0;
+  margin-bottom: 0px;      
+}
 
-.right-chart .text-box { order: 1; padding-left: 20px}
-.right-chart .chart-box {order: 2; padding-left: 40px}
-
+/* === CHART AREA === */
 .chart-box {
-    width: 100%;
-    height: auto;
-    padding: 10px;
-    text-align: center;
+  width: 100%;
+  padding: 22px;
+  text-align: center;
 }
 
-.text-box {
-    color: #444;
-    font-size: 16px;
-    line-height: 1.6;
-    text-align: left
-}
-
+/* === FOOTER === */
 footer {
-    text-align: center;
-    padding: 30px 20px 50px;
-    font-size: 14px;
-    color: #555
+  text-align: center;
+  padding: 48px 24px;
+  font-size: 14px;
+  color: #555;
 }
 
- 
+/* === MARK TEXT === */
+mark {
+  background-color: transparent;
+  color: #000;
+  font-weight: 700;
+}
+
+/* === FOOTER === */
+footer {
+  text-align: left;          
+  padding: 40px 60px;       
+  font-size: 15px;
+  color: #555;
+  background: none;          
+  line-height: 1.6;
+  background-color: #fffcf9;
+}
+
+footer a {
+  color: #d4690b;            
+  text-decoration: none;   
+}
+
+footer a:hover {
+  text-decoration: underline; 
+  color: #993d00;            
+}
+
+.vg-tooltip td.key {
+  max-width: none !important;
+  white-space: normal !important;
+  text-overflow: unset !important;
+  overflow: visible !important;
+}
+.vg-tooltip {
+  font-size: 15px !important;
+  line-height: 1.4em !important;
+  white-space: normal !important;
+}
+
+
+
+

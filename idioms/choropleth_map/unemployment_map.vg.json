@@ -1,11 +1,10 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": 800,
+  "width": 1100,
   "height": 500,
 
   "title": {
-    "text": "Average State-Level Unemployment During COVID-19 (2020-2021)",
-    "dy": 60
+    "text": "Average State-Level Unemployment During COVID-19 (2020-2021)"
   },
 
   "projection": { "type": "identity", "reflectY": true },
@@ -97,21 +96,22 @@
 
   "config": {
     "title": {
-      "fontSize": 24,
+      "fontSize": 25,
       "fontWeight": 700,
       "anchor": "middle",
       "color": "#5c5c5c"
     },
     "legend": {
-      "labelColor": "#7c7c7c",
-      "titleColor": "#777777",
+      "labelColor": "#646464",
+      "titleColor": "#646464",
       "symbolType": "square",    
-      "titleFontSize": 15,  
+      "titleFontSize": 16,  
       "titlePadding": 8,
-      "labelFontSize": 13,
-      "orient": "bottom",
-      "symbolSize": 200,           
-      "labelLimit": 200
+      "labelFontSize": 15,
+      "orient": "bottom-left",
+      "symbolSize": 250,           
+      "titleLimit": 200,
+      "direction": "horizontal"
     },
     "view": { "stroke": null }
   }

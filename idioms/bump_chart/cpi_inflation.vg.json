@@ -1,14 +1,14 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": 450,
-  "height": 400,
+  "width": 650,
+  "height": 550,
 
   "data": {
     "url": "https://raw.githubusercontent.com/peishuen/FIT3179_A2/main/idioms/bump_chart/cpi_inflation.csv",
     "format": {"type": "csv"}
   },
 
-  "title": {"text": "Changes in Consumer Price Index Categories (2019–2023)"},
+  "title": {"text": "Changes in Consumer Price Index Categories (2019-2023)"},
 
   "transform": [
     {
@@ -25,7 +25,7 @@
       "field": "year",
       "type": "ordinal",
       "title": "Year",
-      "axis": {"labelAngle": 0, "labelFontSize": 12, "grid": true},
+      "axis": {"labelAngle": 0, "grid": true},
       "scale": {"type": "point", "padding": 0}
     },
 
@@ -34,7 +34,7 @@
       "type": "quantitative",
       "title": "Inflation Rank",
       "scale": {"reverse": true, "domain": [1, 7]},
-      "axis": {"tickMinStep": 1, "grid": false, "labelFontSize": 12}
+      "axis": {"tickMinStep": 1, "grid": false}
     },
 
     "detail": {"field": "division_name"},
@@ -73,10 +73,10 @@
                 "Health",
                 "Restaurants & Accommodation Services"
               ],
-              "range": ["#B87069", "#DE9514", "#6E70C2"]
+              "range": ["#00B4FA", "#4B2DF7", "#E15DF5"]
             }
           },
-          "value": "#BEBEBE"
+          "value": "#afafaf"
         },
         "opacity": {
           "condition": {"param": "highlight", "value": 1},
@@ -99,10 +99,10 @@
                 "Health",
                 "Restaurants & Accommodation Services"
               ],
-              "range": ["#B87069", "#DE9514", "#6E70C2"]
+              "range": ["#00B4FA", "#4B2DF7", "#E15DF5"]
             }
           },
-          "value": "#BEBEBE"
+          "value": "#afafaf"
         },
         "opacity": {
           "condition": {"param": "highlight", "value": 1},
@@ -113,7 +113,7 @@
 
     {
       "transform": [{"filter": "year(datum.date) == 2023"}],
-      "mark": {"type": "text", "align": "left", "dx": 6, "fontSize": 13},
+      "mark": {"type": "text", "align": "left", "dx": 6, "fontSize": 16},
       "encoding": {
         "text": {"field": "division_name"},
         "color": {
@@ -127,10 +127,10 @@
                 "Health",
                 "Restaurants & Accommodation Services"
               ],
-              "range": ["#E69F00", "#56B4E9", "#CC79A7"]
+              "range": ["#02A5E6", "#4B2DF7", "#DA3AF2"]
             }
           },
-          "value": "#a8a8a8"
+          "value": "#858585"
         },
         "opacity": {
           "condition": {"param": "highlight", "value": 1},
@@ -142,24 +142,25 @@
 
   "config": {
     "title": {
-      "fontSize": 24, 
+      "fontSize": 25, 
       "fontWeight": "bold", 
       "anchor": "middle", 
       "offset": 20,
-      "color": "#5c5c5c"
+      "color": "#5c5c5c",
+      "dx": 135
     },
     "axis": {
-      "titleFontSize": 12.5, 
+      "titleFontSize": 15, 
       "titlePadding": 18, 
       "titleFontWeight": 600, 
       "titleColor": "#858585",
-      "labelFontSize": 10, 
+      "labelFontSize": 13, 
       "labelFontWeight": 200,
       "labelColor": "#858585"
     },
     "text": {
       "fontWeight": "lighter",
-      "fontSize": 12.5,
+      "fontSize":15,
       "color": "#858585"
     },
     "legend": {

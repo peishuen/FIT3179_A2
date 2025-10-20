@@ -1,9 +1,11 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+
   "data": {
     "url": "https://raw.githubusercontent.com/peishuen/FIT3179_A2/refs/heads/main/idioms/line_chart/unemployment_monthly.csv",
     "format": {"type": "csv"}
   },
+
   "title": {
     "text": "National Unemployment Rate (2017-2023)"
   },
@@ -14,30 +16,34 @@
       "as": "unemployment_rate_label"
     }
   ],
+
   "vconcat": [
-      {
-        "width": 700,
-        "height": 300,
-        "mark": {
+    {
+      "width": 800,
+      "height": 400,
+
+      "transform": [{"filter": {"param": "brush"}}],
+      "layer": [
+        {
+          "mark": {
           "type": "line",
           "color": "#68B0A5",
           "strokeWidth": 3
-        },
-        "encoding": {
-          "x": {
-            "field": "date",
-            "type": "temporal",
-            "title": "Date",
-            "timeUnit": "yearmonth",
-            "scale": {"domain": {"param": "brush"}},
-            "axis": {"format": "%b %Y", "labelAngle": -45}
           },
-          "y": {
-            "field": "unemployment_rate",
-            "type": "quantitative",
-            "title": "Unemployment Rate (%)"
-          }, 
-          "tooltip": [
+          "encoding": {
+            "x": {
+              "field": "date",
+              "type": "temporal",
+              "title": "Date",
+              "timeUnit": "yearmonth",
+              "axis": {"format": "%b %Y", "labelAngle": -45, "grid": false}
+            },
+            "y": {
+              "field": "unemployment_rate",
+              "type": "quantitative",
+              "title": "Unemployment Rate (%)"
+            },
+            "tooltip": [
               {
                 "field": "date",
                 "type": "temporal",
@@ -50,62 +56,190 @@
                 "type": "nominal",
                 "title": "Unemployment Rate"
               }
-          ]
-        }
-      }, 
-
-      {
-        "width": 700,
-        "height": 80,
-        "mark": {
-          "type": "area",
-          "color": "#B2D7D1", "opacity": 0.7
+            ]
+          }
         }, 
-        "params": [
-          {"name": "brush", "select": {"type": "interval", "encodings": ["x"]}}
-        ],
-        "encoding": {
-          "x": {
-            "field": "date",
-            "type": "temporal",
-            "title": "Year",
-            "axis": {
-              "grid": false, 
-              "labelAngle": 0, 
-              "tickCount": {"interval": "year", "step": 1}
+        {
+          "data": {
+            "values": {"date": "2020-05-01", "rate": 7.5}
+          },
+          "transform": [{"filter": {"param": "brush"}}],
+          "mark": {
+            "type": "rule", 
+            "color": "#888888", 
+            "strokeDash": [4, 3]
+          },
+          "encoding": {
+            "x": {"field": "date", "type": "temporal"}
+          }
+        },
+        {
+          "data": {
+            "values": {"date": "2020-05-01", "rate": 7.5}
+          },
+          "transform": [{"filter": {"param": "brush"}}],
+          "mark": {
+            "type": "text",
+            "align": "left",
+            "fontSize": 14,
+            "dy": 60,
+            "dx": 10,
+            "color": "#6d6d6d"
+          },
+          "encoding": {
+            "x": {"field": "date", "type": "temporal"},
+            "y": {"field": "rate", "type": "quantitative"},
+            "text": {
+              "value": ["Lockdowns expose", "Malaysia's reliance on", "tourism and services."]
             }
-          }, 
-          "y": {
-            "field": "unemployment_rate",
-            "type": "quantitative",
-            "title": "Unemployment Rate (%)",
-            "axis": {"tickCount": 3, "grid": false}
+          }
+        },
+        {
+          "data": {
+            "values": {"date": "2022-05-01", "rate": 7.5}
+          },
+          "transform": [{"filter": {"param": "brush"}}],
+          "mark": {
+            "type": "rule", 
+            "color": "#888888", 
+            "strokeDash": [4, 3]
+          },
+          "encoding": {
+            "x": {"field": "date", "type": "temporal"}
+          }
+        },
+        {
+          "data": {
+            "values": {"date": "2022-05-01", "rate": 7.5}
+          },
+          "transform": [{"filter": {"param": "brush"}}],
+          "mark": {
+            "type": "text",
+            "align": "left",
+            "fontSize": 14,
+            "dy": 250,
+            "dx": 10,
+            "color": "#6d6d6d"
+          },
+          "encoding": {
+            "x": {"field": "date", "type": "temporal"},
+            "y": {"field": "rate", "type": "quantitative"},
+            "text": {
+              "value": ["Wage aid extensions", "and rehiring efforts", "sustain recovery."]
+            }
+          }
+        },
+                {
+          "data": {
+            "values": {"date": "2018-01-01", "rate": 7.5}
+          },
+          "transform": [{"filter": {"param": "brush"}}],
+          "mark": {
+            "type": "rule", 
+            "color": "#888888", 
+            "strokeDash": [4, 3]
+          },
+          "encoding": {
+            "x": {"field": "date", "type": "temporal"}
+          }
+        },
+        {
+          "data": {
+            "values": {"date": "2018-01-01", "rate": 7.5}
+          },
+          "transform": [{"filter": {"param": "brush"}}],
+          "mark": {
+            "type": "text",
+            "align": "left",
+            "fontSize": 14,
+            "dy": 250,
+            "dx": 10,
+            "color": "#6d6d6d"
+          },
+          "encoding": {
+            "x": {"field": "date", "type": "temporal"},
+            "y": {"field": "rate", "type": "quantitative"},
+            "text": {
+              "value": ["Steady domestic", "demand supports", "low unemployment."]
+            }
           }
         }
-      }
+      ]
+    },
+
+    {
+      "width": 800,
+      "height": 80,
+      "layer": [
+        {
+          "mark": {
+            "type": "text",
+            "align": "center",
+            "baseline": "bottom",
+            "dy": -10,
+            "fontSize": 17,
+            "fontWeight": 500,
+            "color": "#888888"
+          },
+          "encoding": {
+            "x": {"value": 400},  
+            "y": {"value": 0},    
+            "text": {"value": "Choose a time window below"}
+          }
+        },
+        {
+          "mark": {
+            "type": "area",
+            "color": "#B2D7D1",
+            "opacity": 0.7
+          },
+          "params": [
+            {"name": "brush", "select": {"type": "interval", "encodings": ["x"]}}
+          ],
+          "encoding": {
+            "x": {
+              "field": "date",
+              "type": "temporal",
+              "title": "Year",
+              "axis": {
+                "grid": false,
+                "labelAngle": 0,
+                "tickCount": {"interval": "year", "step": 1}
+              }
+            },
+            "y": {
+              "field": "unemployment_rate",
+              "type": "quantitative",
+              "title": "Unemployment Rate (%)",
+              "axis": {"tickCount": 3, "grid": false}
+            }
+          }
+        }
+      ]
+    }
   ],
 
   "config": {
     "title": {
-      "fontSize": 24, 
-      "fontWeight": "bold", 
-      "anchor": "middle", 
+      "fontSize": 25,
+      "fontWeight": "bold",
+      "anchor": "middle",
       "offset": 20,
       "color": "#5c5c5c"
     },
     "axis": {
-      "titleFontSize": 12.5, 
-      "titlePadding": 18, 
-      "titleFontWeight": 600, 
+      "titleFontSize": 15,
+      "titlePadding": 18,
+      "titleFontWeight": 600,
       "titleColor": "#858585",
-      "labelFontSize": 10, 
+      "labelFontSize": 13,
       "labelFontWeight": 200,
       "labelColor": "#858585"
     },
     "text": {
       "fontWeight": "lighter",
-      "fontSize": 12.5,
+      "fontSize": 15,
       "color": "#858585"
     }
-  }    
+  }
 }

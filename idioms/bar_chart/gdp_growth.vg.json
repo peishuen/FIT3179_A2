@@ -1,10 +1,10 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
-    "width": 700,
-    "height": 400,
+    "width": 850,
+    "height": 550,
     
     "title": {
-        "text": "Malaysia's GDP Growth Rate (2017-2023)"
+        "text": "Malaysia's Gross Domestic Product Growth Rate (2017-2023)"
     },
 
     "data": {
@@ -68,7 +68,7 @@
 
                 "tooltip": [
                     {"field": "year", "type": "ordinal", "title": "Year"},
-                    {"field": "gdp_label", "type": "nominal", "title": "GDP Growth"}
+                    {"field": "gdp_label", "type": "nominal", "title": "Gross Domestic Product Growth Rate"}
                 ]
             }
         },
@@ -83,10 +83,10 @@
                 "stroke": "#c08d01"
             },
             "encoding": {
-                "x": {"datum": 2020, "type": "ordinal"},
+                "x": {"datum": 2019, "type": "ordinal"},
                 "x2": {"datum": 2021, "type": "ordinal"},
                 "y": {"datum": 8.5},
-                "y2": {"datum": 6.3},
+                "y2": {"datum": 6.8},
                 "opacity": {
                     "condition": {
                     "test": "!length(data('highlight_store')) || datum['year'] == highlight['year']",
@@ -105,13 +105,13 @@
                 "type": "text",
                 "align": "center",
                 "baseline": "middle",
-                "dx": 50,
-                "dy": -150
+                "dx": 0,
+                "dy": -203
             },
             "encoding": {
                 "x": {"datum": 2020, "type": "ordinal"},
                 "text": {
-                "value": ["Exports and", "reopening fuel", "rapid rebound"]
+                "value": ["Exports-led industries and policy", "support drove a rapid rebound."]
                 },
                 "opacity": {
                     "condition": {
@@ -179,12 +179,12 @@
                 "align": "center",
                 "baseline": "middle",
                 "dx": 0,
-                "dy": 120
+                "dy": 165
             },
             "encoding": {
                 "x": {"datum": 2018, "type": "ordinal"},
                 "text": {
-                "value": ["Lockdowns froze domestic", "demand - first GDP", "contraction since 1998"]
+                "value": ["Lockdowns froze domestic", "consumption and severly", "disrupted production."]
                 },
                 "opacity": {
                     "condition": {
@@ -223,25 +223,25 @@
 
     "config": {
         "title": {
-            "fontSize": 24, 
+            "fontSize": 25, 
             "fontWeight": "bold", 
             "anchor": "middle", 
             "offset": 20,
             "color": "#5c5c5c"
         },
         "axis": {
-            "titleFontSize": 12.5, 
+            "titleFontSize": 15, 
             "titlePadding": 18, 
             "titleFontWeight": 600, 
             "titleColor": "#858585",
-            "labelFontSize": 10, 
+            "labelFontSize": 13, 
             "labelFontWeight": 200,
             "labelColor": "#858585"
         },
         "text": {
             "fontWeight": "lighter",
-            "fontSize": 12.5,
-            "color": "#858585"
+            "fontSize": 15,
+            "color": "#646464"
         }
     }  
 }
