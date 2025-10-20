@@ -1,7 +1,7 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": 850,
-  "height": 550,
+  "width": 800,
+  "height": 400,
 
   "data": {
     "url": "https://raw.githubusercontent.com/peishuen/FIT3179_A2/main/idioms/dumbbell_plot/gdp_state_real_supply.csv",
@@ -91,10 +91,10 @@
       },
       "mark": {"type": "rect", "color": "#fff8e1","stroke": "#c08d01"},
       "encoding": {
-        "x": {"datum": 5.2}, 
-        "x2": {"datum": 6.95},
+        "x": {"datum": 5.4}, 
+        "x2": {"datum": 6.8},
         "y": {"value": 105},
-        "y2": {"value": 150},
+        "y2": {"value": 164},
         "opacity": {
           "condition": {
           "test": "!length(data('highlight_store')) || datum['state'] == highlight['state']",
@@ -113,7 +113,7 @@
         "x": {"datum": 6.0},
         "y": {"value": 120},
         "text": {
-          "value": ["Weaker industrial output and", "trade exposure slowed recovery."]
+          "value": ["Weaker industrial output", "and trade exposure", "slowed recovery."]
         },
         "opacity": {
           "condition": {
@@ -130,10 +130,10 @@
       },
       "mark": {"type": "rule", "color": "#c08d01", "strokeWidth": 1.1},
       "encoding": {
-          "x": {"datum": 5.2},
-          "x2": {"datum": 5.12},
-          "y": {"value": 150},
-          "y2": {"value": 165},
+          "x": {"datum": 5.12},
+          "x2": {"datum": 5.4},
+          "y": {"value": 120},
+          "y2": {"value": 135},
           "opacity": {
             "condition": {
             "test": "!length(data('highlight_store')) || datum['state'] == highlight['state']",
@@ -150,7 +150,7 @@
       "mark": {"type": "rect", "color": "#fff8e1","stroke": "#c08d01"},
       "encoding": {
         "x": {"datum": 4.7}, 
-        "x2": {"datum": 6.85},
+        "x2": {"datum": 6.95},
         "y": {"value": 10},
         "y2": {"value": 55},
         "opacity": {
@@ -168,7 +168,7 @@
       },
       "mark": {"type": "text", "align": "center", "dx": 28},
       "encoding": {
-        "x": {"datum": 5.56},
+        "x": {"datum": 5.58},
         "y": {"value": 25},
         "text": {
           "value": ["Construction and cross-border projects", "lifted growth above pre-pandemic levels."]
@@ -190,7 +190,7 @@
       "encoding": {
           "x": {"datum": 4.1},
           "x2": {"datum": 4.7},
-          "y": {"value": 18},
+          "y": {"value": 13},
           "y2": {"value": 34},
           "opacity": {
             "condition": {
