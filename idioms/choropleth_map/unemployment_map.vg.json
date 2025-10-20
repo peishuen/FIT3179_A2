@@ -1,7 +1,7 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": 1100,
-  "height": 500,
+  "width": 800,
+  "height": 350,
 
   "title": {
     "text": "Average State-Level Unemployment During COVID-19 (2020-2021)"
