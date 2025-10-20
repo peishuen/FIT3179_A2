@@ -269,6 +269,10 @@
         "x": {"datum": {"year": 2019, "month": 10, "date": 1}, "type": "temporal"},
         "text": {
           "value": ["Border closures and supply", "chain breakdowns disrupted trade."]
+        },
+        "opacity": {
+          "condition" : {"param": "highlight", "value": 1},
+          "value": 0
         }
       }
     },
