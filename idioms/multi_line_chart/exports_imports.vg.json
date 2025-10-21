@@ -332,7 +332,8 @@
       "fontWeight": "bold", 
       "offset": 20,
       "color": "#5c5c5c",
-      "align": "center"
+      "align": "center",
+      "dx": -20
     },
     "axis": {
       "titleFontSize": 15, 
