@@ -176,7 +176,6 @@
             "type": "text",
             "align": "center",
             "baseline": "bottom",
-            "dx": -45,
             "dy": -10,
             "fontSize": 17,
             "fontWeight": 500,
